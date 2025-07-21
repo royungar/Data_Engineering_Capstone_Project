@@ -1,0 +1,12 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS metadata
+**/__MACOSX/
+**/._*
+**/.__*
+
+# VS Code
+.vscode/

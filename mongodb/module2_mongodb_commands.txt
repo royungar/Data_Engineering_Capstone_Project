@@ -1,0 +1,59 @@
+# --------------------------------------
+# Task 1: Import catalog.json into MongoDB
+# This command imports the catalog.json file into the 'catalog' database and 'electronics' collection.
+mongoimport \
+  --host 172.21.91.70 \
+  -u root \
+  -p MyPassword \
+  --authenticationDatabase admin \
+  --db catalog \
+  --collection electronics \
+  --file catalog.json \
+  --jsonArray
+
+# --------------------------------------
+# Task 2: List all databases
+# Shows all available MongoDB databases.
+show dbs
+
+# --------------------------------------
+# Task 3: Switch to the 'catalog' database and list collections
+# First switch to the catalog database, then list its collections.
+use catalog
+show collections
+
+# --------------------------------------
+# Task 4: Create an index on the "type" field in the 'electronics' collection
+# This improves query performance on the 'type' field.
+db.electronics.createIndex({ "type": 1 })
+
+# --------------------------------------
+# Task 5: Count all documents where the type is "laptop"
+db.electronics.countDocuments({ "type": "laptop" })
+
+# --------------------------------------
+# Task 6: Count smart phones with a screen size of 6 inches
+# Make sure field name matches dataset (i.e. "screen size" vs "screensize")
+db.electronics.countDocuments({ "type": "smart phone", "screen size": 6 })
+
+# --------------------------------------
+# Task 7: Calculate the average screen size of all smart phones
+# Aggregation pipeline to match smart phones and compute average screen size
+db.electronics.aggregate([
+  { $match: { "type": "smart phone" } },
+  { $group: { _id: null, avgSmartPhoneScreenSize: { $avg: "$screen size" } } }
+])
+
+# --------------------------------------
+# Task 8: Export selected fields (_id, type, model) from the 'electronics' collection to a CSV
+# This creates a CSV file named electronics.csv with specified fields.
+mongoexport \
+  --host 172.21.91.70 \
+  -u root \
+  -p MyPassword \
+  --authenticationDatabase admin \
+  --db catalog \
+  --collection electronics \
+  --type=csv \
+  --fields _id,type,model \
+  --out electronics.csv
