@@ -2,9 +2,8 @@
 
 ##  Overview
 
-This capstone project simulates the role of a Data Engineer at **SoftCart**, an e-commerce company with global reach. The project integrates OLTP and NoSQL systems, a PostgreSQL data warehouse, ETL pipelines, a BI dashboard, and Spark-based machine learning. It was completed as part of the [IBM Data Engineering Professional Certificate](https://www.coursera.org/professional-certificates/ibm-data-engineer) on Coursera.
+This capstone project simulates the role of a Data Engineer at **SoftCart**, an e-commerce company with global reach. The project integrates OLTP and NoSQL systems, a PostgreSQL data warehouse, ETL pipelines, a BI dashboard, and Spark-based machine learning. It was completed as the final project for **Course 14 – Data Engineering Capstone Project** in the [IBM Data Engineering Professional Certificate](https://www.coursera.org/professional-certificates/ibm-data-engineer).
 
-![Data Platform Architecture](images/data-platform-architecture.png)
 ---
 
 ##  Objectives
@@ -18,15 +17,43 @@ This capstone project simulates the role of a Data Engineer at **SoftCart**, an 
 
 ---
 
-##  Tools & Technologies
+## Tools & Technologies
 
-| Category           | Tools/Technologies                                                    |
-|--------------------|-----------------------------------------------------------------------|
-| **Databases**      | MySQL, MongoDB, PostgreSQL                                            |
-| **ETL & Automation** | Bash, Python (`mysql-connector-python`, `psycopg2`), Apache Airflow |
-| **Data Warehouse** | PostgreSQL (staging), IBM Db2 (production - simulated locally)        |
-| **Big Data & ML**  | Apache Spark, PySpark, Spark MLlib                                    |
-| **Visualization**  | IBM Cognos Analytics                                                  |
+| Category             | Tools/Technologies                                                    |
+|----------------------|-----------------------------------------------------------------------|
+| **Databases**        | MySQL, MongoDB, PostgreSQL                                            |
+| **ETL & Automation** | Bash, Python (`mysql-connector-python`, `psycopg2`), Apache Airflow   |
+| **Data Warehouse**   | PostgreSQL (staging and reporting)                                    |
+| **Big Data & ML**    | Apache Spark, PySpark, Spark MLlib                                    |
+| **Visualization**    | IBM Cognos Analytics
+
+---
+
+## Data Platform Architecture
+
+The following diagram illustrates the end-to-end architecture implemented in this project, covering data ingestion, processing, storage, and analytics:
+
+![Data Platform Architecture](images/data-platform-architecture.png)
+
+### Ingestion Layer
+- **Web Server** captures customer activity and sends event data to downstream systems.
+
+### Operational Storage Layer
+- **MySQL** stores structured transactional (OLTP) data from sales operations.
+- **MongoDB** stores unstructured catalog data in a NoSQL format.
+
+### Data Warehousing Layer
+- **PostgreSQL** serves as both the staging and reporting data warehouse, used for cleansing, transformation, and analytics.
+- *(Note: DB2 was optional in the project; PostgreSQL was used in this implementation.)*
+
+### Processing Layer
+- **Apache Spark** performs scalable batch processing and powers machine learning tasks using PySpark and MLlib.
+
+### Visualization Layer
+- **IBM Cognos Analytics** is used to deliver business dashboards, KPIs, and interactive visualizations.
+- *(Note: Google Looker Studio was optional in the project; IBM Cognos Analytics was used in this implementation.)*
+
+This layered architecture enables modular, scalable, and maintainable data engineering pipelines, supporting robust analytics from raw ingestion to insight delivery.
 
 ---
 
@@ -182,5 +209,6 @@ This project was completed as part of the IBM Data Engineering Professional Cert
 
 ## Links
 
-Data Engineering Capstone Project - (https://www.coursera.org/learn/data-enginering-capstone-project)
-GitHub Repository - (https://github.com/royungar)
+- Course Page - [Data Engineering Capstone Project](https://www.coursera.org/learn/data-enginering-capstone-project)
+- [GitHub Profile](https://github.com/royungar)
+- [GitHub Repository](https://github.com/royungar/Data_Engineering_Capstone_Project)
